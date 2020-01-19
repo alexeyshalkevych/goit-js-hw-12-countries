@@ -16,7 +16,7 @@ refs.searchInput.addEventListener('input', debounce(searchInputHandler, 800));
 function searchInputHandler(e) {
   const input = e.target.value;
 
-  fetchCoutry(input);
+  fetchCountry(input);
 }
 
 function insertListItems(items) {
@@ -64,10 +64,14 @@ function checkCountryListLength(country) {
   }
 }
 
-function fetchCoutry(value) {
+function fetchCountry(countryName) {
   clearListItems();
 
-  fetchCountries(value)
+  if(countryName === '') {
+    return;
+  }
+
+  fetchCountries(countryName)
     .then(countries => checkCountryListLength(countries))
     .catch(error => console.warn(error));
 }
